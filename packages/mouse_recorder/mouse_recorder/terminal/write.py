@@ -6,7 +6,7 @@ def move_up(times=1):
 
 
 def clear_line(end='\r'):
-    # TODO: include me in progress_bar_function, i'm too small
+    # TODO: include me in progress_bar function and in clear_all, i'm too small
     characters = os.get_terminal_size().columns
     return ' '*characters + end
 
