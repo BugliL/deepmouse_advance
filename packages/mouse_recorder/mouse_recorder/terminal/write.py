@@ -21,15 +21,13 @@ def progress_bar(current_value, max_value, title='', leave_title=False):
     percent_space = 5
     columns = os.get_terminal_size().columns 
     characters = columns - (4+percent_space)  # removing  present characters from counting
-    progress = min(((current_value + 1) / max_value) * 100, 100)  # calculate progress
-    printed_progress = int(progress*characters/100)  # calculate number of characters to print
     bar_template = '\n[{:<' + str(characters) + '}] {:>'+ str(percent_space) + '.1f}%'  # creating template to print
     
-    result = clear_line() + title  # using a variable instead of printing all time (print costs)
+    progress = min(((current_value + 1) / max_value) * 100, 100)  # calculate progress, if it execed 100 the min function reset it to 100
+    printed_progress = int(progress*characters/100)  # calculate number of characters to print
     bar = bar_template.format('#'*printed_progress, progress)  # creating bar
-    result += bar + move_up() +'\r' 
+    return clear_line() + title + bar + move_up() +'\r' 
     
-    return result
 
 def print_progress_bar(current_value, max_value, title='', leave_title=False):
     print(
